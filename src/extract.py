@@ -53,6 +53,20 @@ def extract_data():
     print("-----------------------")
     print(encounters["Id"].duplicated().sum())
 
+    print("\nPATIENT-ENCOUNTER RELATIONSHIP")
+    print("------------------------------")
+
+    print("Unique patients in encounter data:")
+    print(encounters["PATIENT"].nunique())
+
+    print("\nEncounters per patient:")
+    print(encounters["PATIENT"].value_counts().describe())
+
+    print("\nPatients in encounters missing from patient table:")
+    print(
+        (~encounters["PATIENT"].isin(patients["Id"])).sum()
+    )
+
     return patients, encounters
 
 
